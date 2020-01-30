@@ -70,11 +70,12 @@ namespace ConsoleAdventure.Project
     }
     public void Help()
     {
-      Messages.Add("Actions:");
+      Messages.Add("~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~");
+      Messages.Add("");
       Messages.Add("go (direction) - input your cardinal direction to move about the area");
       Messages.Add("look           - check your surroundings");
       Messages.Add("inventory      - view your inventory");
-      Messages.Add("take (item)    - pick up an item from the area to add it to your inventory");
+      Messages.Add("take (item)    - attempt to move an item from the area to add it to your inventory");
       Messages.Add("use (item)     - attempt to use an item from your inventory with the environment");
       Messages.Add("quit           - quit the game");
     }
