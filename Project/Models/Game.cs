@@ -16,7 +16,7 @@ namespace ConsoleAdventure.Project.Models
       //NOTE ROOMS
       #region
       // TODO Update descriptions
-      Room Woods = new Room("The forest path", "The path south into the forest is pitch black. If you walk down it, you will get lost.");
+      Room Woods = new Room("The forest path", "To the north lies an abandoned structure. The path south into the forest is pitch black. If you walk down it, you will get lost.");
       Room FrontPorch = new Room("Front porch", "As you walk up the stairs to the front door, the boards creak under your footsteps.");
       Room EastSide = new Room("Eastern side of the house", "Nothing of notice takes your interest as you travel along the eastern side of the building.");
       Room WestSide = new Room("Western side of the house", "Traveling along the west side of the house shows nothing to be of interest.");

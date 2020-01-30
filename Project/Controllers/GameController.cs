@@ -42,6 +42,9 @@ namespace ConsoleAdventure.Project.Controllers
 
       switch (command)
       {
+        case "help":
+          _gameService.Help();
+          break;
         case "go":
         case "walk":
         case "run":
