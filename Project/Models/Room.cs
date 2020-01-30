@@ -25,13 +25,9 @@ namespace ConsoleAdventure.Project.Models
       return item;
     }
 
-    public Room ChangeRoom(Room currentRoom, Room enteringRoom)
-    {
-      if (currentRoom.Exits.ContainsValue(enteringRoom))
-      {
-        return enteringRoom;
-      }
-      return null;
-    }
+    // public Room ChangeRoom(Room currentRoom, string direction)
+    // {
+    //   return null;
+    // }
   }
 }

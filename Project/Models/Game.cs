@@ -59,5 +59,10 @@ namespace ConsoleAdventure.Project.Models
       CurrentRoom = Woods;
     }
 
+    public Game()
+    {
+      Setup();
+    }
+
   }
 }
