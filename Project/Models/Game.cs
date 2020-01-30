@@ -1,3 +1,4 @@
+using System;
 using ConsoleAdventure.Project.Interfaces;
 
 namespace ConsoleAdventure.Project.Models
@@ -56,6 +57,23 @@ namespace ConsoleAdventure.Project.Models
       #endregion
 
       CurrentRoom = Woods;
+    }
+
+    public string Look()
+    {
+      return CurrentRoom.Description;
+    }
+
+    public void Quit()
+    {
+      // TODO create _isPlaying in Controller
+      //   _isPlaying = false;
+    }
+
+    public void Help()
+    {
+      // TODO Write help
+      Console.WriteLine("Actions:");
     }
   }
 }
