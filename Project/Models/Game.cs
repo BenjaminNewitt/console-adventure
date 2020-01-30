@@ -13,7 +13,7 @@ namespace ConsoleAdventure.Project.Models
       //NOTE ROOMS
       #region
       // TODO Update descriptions
-      Room Woods = new Room("The forest path", "The path into the forest is is pitch black. If you walk down it, you may get lost.");
+      Room Woods = new Room("The forest path", "The path south into the forest is is pitch black. If you walk down it, you may get lost.");
       Room FrontPorch = new Room("Front porch", "As you walk up the stairs to the front door, the boards creak under your footsteps.");
       Room EastSide = new Room("Eastern side of the house", "Nothing of notable description.");
       Room WestSide = new Room("Western side of the house", "Nothing of notable description.");
@@ -21,13 +21,19 @@ namespace ConsoleAdventure.Project.Models
       Room LivingRoom = new Room("House Interior", "To the west of you lies a stairwell leading downwards, and to the north is another door.");
       Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair. There is a faded painting on the western wall, the only item not in decent condition.");
       Room Basement = new Room("Basement", "With the stairs groaning under your weight with every footstep, you descend into the darkness. It is too dark to see anything.");
+      Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back. A porch leads up to the windowless house.");
 
       Woods.Exits.Add("north", FrontPorch);
+      FrontYard.Exits.Add("north", FrontPorch);
+      FrontYard.Exits.Add("south", Woods);
+      FrontYard.Exits.Add("east", EastSide);
+      FrontYard.Exits.Add("west", WestSide);
       FrontPorch.Exits.Add("north", LivingRoom);
-      FrontPorch.Exits.Add("east", EastSide);
-      FrontPorch.Exits.Add("west", WestSide);
+      FrontPorch.Exits.Add("south", FrontYard);
       EastSide.Exits.Add("north", BackOfHouse);
+      EastSide.Exits.Add("south", FrontYard);
       WestSide.Exits.Add("north", BackOfHouse);
+      WestSide.Exits.Add("south", FrontYard);
       BackOfHouse.Exits.Add("east", EastSide);
       BackOfHouse.Exits.Add("west", WestSide);
       LivingRoom.Exits.Add("north", Den);
@@ -42,6 +48,11 @@ namespace ConsoleAdventure.Project.Models
       Item Map = new Item("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
       Item Compass = new Item("Compass", "A rusted, but usable, compass.");
       Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.");
+
+      Den.Items.Add(Map);
+      BackOfHouse.Items.Add(Lantern);
+      Basement.Items.Add(Compass);
+
 
       #endregion
     }
