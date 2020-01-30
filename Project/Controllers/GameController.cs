@@ -28,6 +28,10 @@ namespace ConsoleAdventure.Project.Controllers
         Console.WriteLine("");
         GetUserInput();
       }
+      Console.Clear();
+      Print();
+      Console.ReadKey();
+      Console.Clear();
     }
 
     //NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
@@ -42,6 +46,10 @@ namespace ConsoleAdventure.Project.Controllers
 
       switch (command)
       {
+        case "quit":
+          _gameService.Quit();
+          _playing = false;
+          break;
         case "help":
           _gameService.Help();
           break;
@@ -61,7 +69,6 @@ namespace ConsoleAdventure.Project.Controllers
           _gameService.PrintInvalidInput();
           break;
       }
-
     }
 
     //NOTE this should print your messages for the game.

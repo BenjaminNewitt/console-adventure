@@ -62,6 +62,19 @@ namespace ConsoleAdventure.Project
       Messages.Add($"{_game.CurrentRoom.Description}");
     }
 
+    public void PrintQuitMessage()
+    {
+      Messages.Add(@"
+▄█▄    ████▄ █▀▄▀█ ▄███▄       ███   ██   ▄█▄    █  █▀        ▄▄▄▄▄   ████▄ ████▄    ▄            
+█▀ ▀▄  █   █ █ █ █ █▀   ▀      █  █  █ █  █▀ ▀▄  █▄█         █     ▀▄ █   █ █   █     █           
+█   ▀  █   █ █ ▄ █ ██▄▄        █ ▀ ▄ █▄▄█ █   ▀  █▀▄       ▄  ▀▀▀▀▄   █   █ █   █ ██   █          
+█▄  ▄▀ ▀████ █   █ █▄   ▄▀     █  ▄▀ █  █ █▄  ▄▀ █  █       ▀▄▄▄▄▀    ▀████ ▀████ █ █  █          
+▀███▀           █  ▀███▀       ███      █ ▀███▀    █                              █  █ █ ██ ██ ██ 
+               ▀                       █          ▀                               █   ██          
+                                      ▀                                                           
+");
+    }
+
     #endregion
     public void Go(string direction)
     {
@@ -70,14 +83,16 @@ namespace ConsoleAdventure.Project
     }
     public void Help()
     {
-      Messages.Add("~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~");
-      Messages.Add("");
-      Messages.Add("go (direction) - input your cardinal direction to move about the area");
-      Messages.Add("look           - check your surroundings");
-      Messages.Add("inventory      - view your inventory");
-      Messages.Add("take (item)    - attempt to move an item from the area to add it to your inventory");
-      Messages.Add("use (item)     - attempt to use an item from your inventory with the environment");
-      Messages.Add("quit           - quit the game");
+      Messages.Add(@"
+~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
+
+go (direction)~~~~~~~~~~~~~~~ input your cardinal direction to move about the area
+look          ~~~~~~~~~~~~~~~ check your surroundings
+inventory     ~~~~~~~~~~~~~~~ view your inventory
+take (item)   ~~~~~~~~~~~~~~~ attempt to move an item from the area to add it to your inventory
+use (item)    ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
+quit          ~~~~~~~~~~~~~~~ quit the game
+      ");
     }
 
     public void Inventory()
@@ -97,7 +112,7 @@ namespace ConsoleAdventure.Project
 
     public void Quit()
     {
-      throw new System.NotImplementedException();
+      PrintQuitMessage();
     }
     ///<summary>
     ///Restarts the game 
