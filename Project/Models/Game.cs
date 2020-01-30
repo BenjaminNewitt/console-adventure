@@ -59,21 +59,5 @@ namespace ConsoleAdventure.Project.Models
       CurrentRoom = Woods;
     }
 
-    public string Look()
-    {
-      return CurrentRoom.Description;
-    }
-
-    public void Quit()
-    {
-      // TODO create _isPlaying in Controller
-      //   _isPlaying = false;
-    }
-
-    public void Help()
-    {
-      // TODO Write help
-      Console.WriteLine("Actions:");
-    }
   }
 }
