@@ -20,9 +20,10 @@ namespace ConsoleAdventure.Project.Interfaces
     {
       if (Exits.ContainsKey(direction))
       {
-        return Exits[direction];
+        IRoom newRoom = Exits[direction];
+        return newRoom;
       }
-      return null;
+      return this;
     }
   }
 }

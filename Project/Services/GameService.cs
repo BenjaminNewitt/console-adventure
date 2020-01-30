@@ -16,7 +16,7 @@ namespace ConsoleAdventure.Project
     }
     public void Go(string direction)
     {
-      _game.CurrentRoom.ChangeRoom(direction);
+      _game.CurrentRoom = _game.CurrentRoom.ChangeRoom(direction);
     }
     public void Help()
     {
