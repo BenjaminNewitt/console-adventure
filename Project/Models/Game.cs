@@ -18,8 +18,8 @@ namespace ConsoleAdventure.Project.Models
       // TODO Update descriptions
       Room Woods = new Room("The forest path", "The path south into the forest is pitch black. If you walk down it, you will get lost.");
       Room FrontPorch = new Room("Front porch", "As you walk up the stairs to the front door, the boards creak under your footsteps.");
-      Room EastSide = new Room("Eastern side of the house", "Nothing of notable description.");
-      Room WestSide = new Room("Western side of the house", "Nothing of notable description.");
+      Room EastSide = new Room("Eastern side of the house", "Nothing of notice takes your interest as you travel along the eastern side of the building.");
+      Room WestSide = new Room("Western side of the house", "Traveling along the west side of the house shows nothing to be of interest.");
       Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single window.");
       Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room. To the west of you lies a stairwell leading downwards, and to the north is another door.");
       Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. There is a faded painting on the western wall, the only item not in decent condition.");

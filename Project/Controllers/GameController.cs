@@ -33,7 +33,7 @@ namespace ConsoleAdventure.Project.Controllers
     //NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
     public void GetUserInput()
     {
-      Console.Write("What would you like to do? ");
+      Console.Write("What will you do? ");
       string input = Console.ReadLine().ToLower() + " ";
       string command = input.Substring(0, input.IndexOf(" "));
       string option = input.Substring(input.IndexOf(" ") + 1).Trim();
