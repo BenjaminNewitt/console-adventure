@@ -21,7 +21,7 @@ namespace ConsoleAdventure.Project.Controllers
       Print();
       Console.ReadKey();
       Console.Clear();
-      _gameService.PrintCurrentRoomDes();
+      _gameService.PrintIntroMessage();
       while (_playing)
       {
         Print();
