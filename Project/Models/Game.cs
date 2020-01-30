@@ -1,4 +1,3 @@
-using System;
 using ConsoleAdventure.Project.Interfaces;
 
 namespace ConsoleAdventure.Project.Models
