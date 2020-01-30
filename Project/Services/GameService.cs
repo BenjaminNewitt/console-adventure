@@ -14,6 +14,10 @@ namespace ConsoleAdventure.Project
       _game = new Game();
       Messages = new List<string>();
     }
+
+    // NOTE Utility Messages
+    // TODO move messages to utils
+    #region
     public void PrintTitle()
     {
       Messages.Add(@"
@@ -48,9 +52,21 @@ namespace ConsoleAdventure.Project
       Messages.Add("press any key to continue");
     }
 
+    public void PrintInvalidInput()
+    {
+      Messages.Add("action not recognized");
+    }
+
+    public void PrintCurrentRoomDes()
+    {
+      Messages.Add($"{_game.CurrentRoom.Description}");
+    }
+
+    #endregion
     public void Go(string direction)
     {
       _game.CurrentRoom = _game.CurrentRoom.ChangeRoom(direction);
+      PrintCurrentRoomDes();
     }
     public void Help()
     {
@@ -59,12 +75,12 @@ namespace ConsoleAdventure.Project
 
     public void Inventory()
     {
-      throw new System.NotImplementedException();
+
     }
 
     public void Look()
     {
-      throw new System.NotImplementedException();
+      PrintCurrentRoomDes();
     }
 
     public void Quit()

@@ -20,11 +20,12 @@ namespace ConsoleAdventure.Project.Controllers
       _gameService.PrintChooseAny();
       Print();
       Console.ReadKey();
-      Console.Clear();
       _gameService.PrintIntroMessage();
       while (_playing)
       {
+        Console.Clear();
         Print();
+        Console.WriteLine("");
         GetUserInput();
       }
     }
@@ -32,12 +33,31 @@ namespace ConsoleAdventure.Project.Controllers
     //NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
     public void GetUserInput()
     {
-      Console.WriteLine("What would you like to do?");
+      Console.Write("What would you like to do? ");
       string input = Console.ReadLine().ToLower() + " ";
       string command = input.Substring(0, input.IndexOf(" "));
       string option = input.Substring(input.IndexOf(" ") + 1).Trim();
       //NOTE this will take the user input and parse it into a command and option.
       //IE: take silver key => command = "take" option = "silver key"
+
+      switch (command)
+      {
+        case "go":
+        case "walk":
+        case "run":
+        case "travel":
+          _gameService.Go(option);
+          break;
+        case "look":
+          _gameService.Look();
+          break;
+        case "inventory":
+          _gameService.Inventory();
+          break;
+        default:
+          _gameService.PrintInvalidInput();
+          break;
+      }
 
     }
 

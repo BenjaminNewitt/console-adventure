@@ -18,12 +18,12 @@ namespace ConsoleAdventure.Project.Models
       Room EastSide = new Room("Eastern side of the house", "Nothing of notable description.");
       Room WestSide = new Room("Western side of the house", "Nothing of notable description.");
       Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single window.");
-      Room LivingRoom = new Room("House Interior", "To the west of you lies a stairwell leading downwards, and to the north is another door.");
-      Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair. There is a faded painting on the western wall, the only item not in decent condition.");
+      Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room. To the west of you lies a stairwell leading downwards, and to the north is another door.");
+      Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. There is a faded painting on the western wall, the only item not in decent condition.");
       Room Basement = new Room("Basement", "With the stairs groaning under your weight with every footstep, you descend into the darkness. It is too dark to see anything.");
       Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back. A porch leads up to the windowless house.");
 
-      Woods.Exits.Add("north", FrontPorch);
+      Woods.Exits.Add("north", FrontYard);
       FrontYard.Exits.Add("north", FrontPorch);
       FrontYard.Exits.Add("south", Woods);
       FrontYard.Exits.Add("east", EastSide);
