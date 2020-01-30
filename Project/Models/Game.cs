@@ -7,9 +7,12 @@ namespace ConsoleAdventure.Project.Models
     public IRoom CurrentRoom { get; set; }
     public IPlayer CurrentPlayer { get; set; }
 
-    //NOTE Make yo rooms here...
+
+
     public void Setup()
     {
+
+      Player Player = new Player("Player");
       //NOTE ROOMS
       #region
       // TODO Update descriptions
@@ -56,6 +59,7 @@ namespace ConsoleAdventure.Project.Models
       #endregion
 
       CurrentRoom = Woods;
+      CurrentPlayer = Player;
     }
 
     public Game()

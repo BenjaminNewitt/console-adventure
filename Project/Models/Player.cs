@@ -8,10 +8,10 @@ namespace ConsoleAdventure.Project.Models
 
     public string Name { get; set; }
     public List<Item> Inventory { get; set; }
-    public Player(string name, List<Item> inventory)
+    public Player(string name)
     {
       Name = name;
-      Inventory = inventory;
+      Inventory = new List<Item>();
     }
   }
 }

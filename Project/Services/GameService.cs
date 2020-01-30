@@ -75,7 +75,12 @@ namespace ConsoleAdventure.Project
 
     public void Inventory()
     {
-
+      int index = 0;
+      foreach (Item item in _game.CurrentPlayer.Inventory)
+      {
+        Messages.Add($"{_game.CurrentPlayer.Inventory[index]}");
+        index++;
+      }
     }
 
     public void Look()
