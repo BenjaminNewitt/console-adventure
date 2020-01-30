@@ -18,5 +18,20 @@ namespace ConsoleAdventure.Project.Models
       Items = new List<Item>();
       Exits = new Dictionary<string, IRoom>();
     }
+
+    public Item TakeItem(Room currentRoom, Item item)
+    {
+      currentRoom.Items.Remove(item);
+      return item;
+    }
+
+    public Room ChangeRoom(Room currentRoom, Room enteringRoom)
+    {
+      if (currentRoom.Exits.ContainsValue(enteringRoom))
+      {
+        return enteringRoom;
+      }
+      return null;
+    }
   }
 }

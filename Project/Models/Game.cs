@@ -13,7 +13,7 @@ namespace ConsoleAdventure.Project.Models
       //NOTE ROOMS
       #region
       // TODO Update descriptions
-      Room Woods = new Room("The forest path", "The path south into the forest is is pitch black. If you walk down it, you may get lost.");
+      Room Woods = new Room("The forest path", "The path south into the forest is pitch black. If you walk down it, you will get lost.");
       Room FrontPorch = new Room("Front porch", "As you walk up the stairs to the front door, the boards creak under your footsteps.");
       Room EastSide = new Room("Eastern side of the house", "Nothing of notable description.");
       Room WestSide = new Room("Western side of the house", "Nothing of notable description.");
@@ -53,8 +53,9 @@ namespace ConsoleAdventure.Project.Models
       BackOfHouse.Items.Add(Lantern);
       Basement.Items.Add(Compass);
 
-
       #endregion
+
+      CurrentRoom = Woods;
     }
   }
 }
