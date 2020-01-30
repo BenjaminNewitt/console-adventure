@@ -19,15 +19,6 @@ namespace ConsoleAdventure.Project.Models
       Exits = new Dictionary<string, IRoom>();
     }
 
-    public Item TakeItem(Room currentRoom, Item item)
-    {
-      currentRoom.Items.Remove(item);
-      return item;
-    }
 
-    // public Room ChangeRoom(Room currentRoom, string direction)
-    // {
-    //   return null;
-    // }
   }
 }

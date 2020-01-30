@@ -16,11 +16,7 @@ namespace ConsoleAdventure.Project
     }
     public void Go(string direction)
     {
-      if (_game.CurrentRoom.Exits.ContainsKey(direction))
-      {
-        _game.CurrentRoom = _game.CurrentRoom.Exits[direction];
-        return;
-      }
+      _game.CurrentRoom.ChangeRoom(direction);
     }
     public void Help()
     {
