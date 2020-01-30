@@ -17,14 +17,15 @@ namespace ConsoleAdventure.Project.Controllers
     {
       _gameService.PrintTitle();
       _gameService.PrintCredit();
-      _gameService.PrintAnyKey();
+      _gameService.PrintChooseAny();
       Print();
       Console.ReadKey();
       Console.Clear();
-
+      _gameService.PrintCurrentRoomDes();
       while (_playing)
       {
         Print();
+        GetUserInput();
       }
     }
 

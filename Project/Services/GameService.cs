@@ -37,10 +37,17 @@ namespace ConsoleAdventure.Project
 ");
     }
 
-    public void PrintAnyKey()
+    // TODO Rewrite PrintIntroMessage
+    public void PrintIntroMessage()
+    {
+      Messages.Add($"{_game.CurrentRoom.Description}");
+    }
+
+    public void PrintChooseAny()
     {
       Messages.Add("press any key to continue");
     }
+
     public void Go(string direction)
     {
       _game.CurrentRoom = _game.CurrentRoom.ChangeRoom(direction);
