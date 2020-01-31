@@ -47,6 +47,7 @@ namespace ConsoleAdventure.Project.Controllers
       switch (command)
       {
         case "quit":
+        case "q":
           _gameService.Quit();
           _playing = false;
           break;
