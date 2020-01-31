@@ -10,11 +10,6 @@ namespace ConsoleAdventure.Project.Interfaces
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
-    public Item TakeItem(Item item)
-    {
-      Items.Remove(item);
-      return item;
-    }
 
     public IRoom ChangeRoom(string direction)
     {
@@ -24,6 +19,11 @@ namespace ConsoleAdventure.Project.Interfaces
         return newRoom;
       }
       return this;
+    }
+
+    public void RemoveItem(Item foundItem)
+    {
+      Items.Remove(foundItem);
     }
   }
 }

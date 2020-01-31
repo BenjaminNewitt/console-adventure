@@ -78,29 +78,37 @@ namespace ConsoleAdventure.Project
     #endregion
     public void Go(string direction)
     {
-      _game.CurrentRoom = _game.CurrentRoom.ChangeRoom(direction);
-      PrintCurrentRoomDes();
+      if (direction != "north" && direction != "south" && direction != "east" && direction != "west")
+      {
+        PrintInvalidInput();
+      }
+      else
+      {
+        _game.CurrentRoom = _game.CurrentRoom.ChangeRoom(direction);
+        PrintCurrentRoomDes();
+      }
     }
     public void Help()
     {
       Messages.Add(@"
-~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
+~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
 
-go (direction)~~~~~~~~~~~~~~~ input your cardinal direction to move about the area
-look          ~~~~~~~~~~~~~~~ check your surroundings
-inventory     ~~~~~~~~~~~~~~~ view your inventory
-take (item)   ~~~~~~~~~~~~~~~ attempt to move an item from the area to add it to your inventory
-use (item)    ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
-quit          ~~~~~~~~~~~~~~~ quit the game
+    go (direction)~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
+    look          ~~~~~~~~~~~~~~~ check your surroundings
+    inventory     ~~~~~~~~~~~~~~~ view your inventory
+    take (item)   ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
+    use (item)    ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
+    quit          ~~~~~~~~~~~~~~~ quit the game
       ");
     }
 
     public void Inventory()
     {
+      Messages.Add("~~~~~{Inventory}~~~~~");
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Messages.Add($"{_game.CurrentPlayer.Inventory[index]}");
+        Messages.Add($"{_game.CurrentPlayer.Inventory[index].Name}");
         index++;
       }
     }
@@ -129,7 +137,17 @@ quit          ~~~~~~~~~~~~~~~ quit the game
     ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
     public void TakeItem(string itemName)
     {
-      throw new System.NotImplementedException();
+      Item foundItem = _game.CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName);
+      if (foundItem == null)
+      {
+        PrintInvalidInput();
+      }
+      else
+      {
+        _game.CurrentRoom.RemoveItem(foundItem);
+        _game.CurrentPlayer.AddItem(foundItem);
+        Messages.Add($"You added the {itemName} to inventory");
+      }
     }
     ///<summary>
     ///No need to Pass a room since Items can only be used in the CurrentRoom
@@ -139,6 +157,7 @@ quit          ~~~~~~~~~~~~~~~ quit the game
     public void UseItem(string itemName)
     {
       throw new System.NotImplementedException();
+
     }
   }
 }

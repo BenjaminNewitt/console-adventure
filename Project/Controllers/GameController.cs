@@ -65,6 +65,9 @@ namespace ConsoleAdventure.Project.Controllers
         case "inventory":
           _gameService.Inventory();
           break;
+        case "take":
+          _gameService.TakeItem(option);
+          break;
         default:
           _gameService.PrintInvalidInput();
           break;
