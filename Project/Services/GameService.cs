@@ -156,7 +156,7 @@ namespace ConsoleAdventure.Project
     }
 
 
-    public void UseInventoryItem(string itemName)
+    public void UseItem(string itemName)
     {
       Item foundItem = _game.CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName);
       if (foundItem == null)
