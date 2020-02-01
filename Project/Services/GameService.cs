@@ -161,13 +161,15 @@ namespace ConsoleAdventure.Project
         switch (itemName)
         {
           case "lantern":
-            Messages.Add("You used the lantern");
+            Messages.Add("You light the lantern.");
+            Messages.Add("");
+            checkItemUse(itemName);
             break;
           case "compass":
-            Messages.Add("You used the compass");
+            Messages.Add("You bring out the compass.");
             break;
           case "map":
-            Messages.Add("You used the map");
+            Messages.Add("You unfurl the map.");
             break;
           default:
             PrintInvalidInput();
@@ -176,6 +178,47 @@ namespace ConsoleAdventure.Project
       }
     }
     #endregion
+
+    public void checkItemUse(string itemName)
+    {
+      bool isItemUsable = _game.CurrentRoom.CheckItemUse(itemName);
+      if (isItemUsable == true)
+      {
+
+        switch (_game.CurrentRoom.Name)
+        {
+          case "Basement":
+            if (itemName == "lantern")
+            {
+              updateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall.");
+              removeUsableItem(itemName);
+              PrintCurrentRoomDes();
+              updateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall to the west remains as the only notable feature.");
+            }
+            else
+            {
+              Messages.Add($"The {itemName} has no use here");
+            };
+            break;
+          default:
+            Messages.Add("You can't use that item here");
+            break;
+        }
+      }
+      else
+      {
+        Messages.Add("That item can't be used here");
+      }
+    }
+    public void updateDesc(string desc)
+    {
+      _game.CurrentRoom.ChangeDesc(desc);
+    }
+
+    public void removeUsableItem(string itemName)
+    {
+      _game.CurrentRoom.RemoveUsableItem(itemName);
+    }
 
     // NOTE Unused Actions
     // TODO Remove if never used + remove from IGameService

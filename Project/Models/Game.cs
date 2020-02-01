@@ -58,6 +58,14 @@ namespace ConsoleAdventure.Project.Models
 
       #endregion
 
+      #region 
+      // NOTE USABLE ITEMS
+      Basement.UsableItems.Add("lantern");
+      Woods.UsableItems.Add("lantern");
+      Woods.UsableItems.Add("map");
+      Woods.UsableItems.Add("map");
+      #endregion
+
       CurrentRoom = Woods;
       CurrentPlayer = Player;
     }

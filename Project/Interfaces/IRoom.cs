@@ -10,6 +10,8 @@ namespace ConsoleAdventure.Project.Interfaces
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
+    List<string> UsableItems { get; set; }
+
 
     public IRoom ChangeRoom(string direction)
     {
@@ -21,6 +23,20 @@ namespace ConsoleAdventure.Project.Interfaces
       return null;
     }
 
+    public bool CheckItemUse(string itemName)
+    {
+      if (UsableItems.Contains(itemName.ToLower()))
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public void RemoveUsableItem(string itemName)
+    {
+      string foundItem = UsableItems.Find(i => i == itemName);
+      UsableItems.Remove(foundItem);
+    }
     public void RemoveItem(Item foundItem)
     {
       Items.Remove(foundItem);
