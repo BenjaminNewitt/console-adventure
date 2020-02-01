@@ -156,8 +156,29 @@ namespace ConsoleAdventure.Project
     ///</summary>
     public void UseItem(string itemName)
     {
-      throw new System.NotImplementedException();
-
+      Item foundItem = _game.CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName);
+      if (foundItem == null)
+      {
+        PrintInvalidInput();
+      }
+      else
+      {
+        switch (itemName)
+        {
+          case "lantern":
+            Messages.Add("You used the lantern");
+            break;
+          case "compass":
+            Messages.Add("You used the compass");
+            break;
+          case "map":
+            Messages.Add("You used the map");
+            break;
+          default:
+            PrintInvalidInput();
+            break;
+        }
+      }
     }
   }
 }
