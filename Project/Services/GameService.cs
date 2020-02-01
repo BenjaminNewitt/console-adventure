@@ -76,6 +76,9 @@ namespace ConsoleAdventure.Project
     }
 
     #endregion
+
+    // NOTE Actions
+    #region
     public void Go(string direction)
     {
       if (direction != "north" && direction != "south" && direction != "east" && direction != "west")
@@ -130,19 +133,6 @@ namespace ConsoleAdventure.Project
     {
       PrintQuitMessage();
     }
-    ///<summary>
-    ///Restarts the game 
-    ///</summary>
-    public void Reset()
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public void Setup(string playerName)
-    {
-      throw new System.NotImplementedException();
-    }
-    ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
     public void TakeItem(string itemName)
     {
       Item foundItem = _game.CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName);
@@ -157,11 +147,8 @@ namespace ConsoleAdventure.Project
         Messages.Add($"You added the {itemName} to inventory");
       }
     }
-    ///<summary>
-    ///No need to Pass a room since Items can only be used in the CurrentRoom
-    ///Make sure you validate the item is in the room or player inventory before
-    ///being able to use the item
-    ///</summary>
+
+
     public void UseItem(string itemName)
     {
       Item foundItem = _game.CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName);
@@ -188,5 +175,20 @@ namespace ConsoleAdventure.Project
         }
       }
     }
+    #endregion
+
+    // NOTE Unused Actions
+    // TODO Remove if never used + remove from IGameService
+    #region
+    public void Reset()
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public void Setup(string playerName)
+    {
+      throw new System.NotImplementedException();
+    }
+    #endregion
   }
 }
