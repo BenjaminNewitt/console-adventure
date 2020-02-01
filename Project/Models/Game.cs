@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 
 namespace ConsoleAdventure.Project.Models
@@ -6,8 +7,6 @@ namespace ConsoleAdventure.Project.Models
   {
     public IRoom CurrentRoom { get; set; }
     public IPlayer CurrentPlayer { get; set; }
-
-
 
     public void Setup()
     {
@@ -48,10 +47,15 @@ namespace ConsoleAdventure.Project.Models
 
       //NOTE ITEMS
       #region 
+      // NOTE INVENTORY ITEMS
+      // NOTE KEY ITEMS
       Item Map = new Item("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
       Item Compass = new Item("Compass", "A rusted, but usable, compass.");
       Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.");
 
+      // NOTE RED HERRINGS
+
+      // NOTE INVENTORY ITEMS ADDED TO ROOMS
       Den.Items.Add(Map);
       BackOfHouse.Items.Add(Lantern);
       Basement.Items.Add(Compass);
@@ -59,11 +63,14 @@ namespace ConsoleAdventure.Project.Models
       #endregion
 
       #region 
-      // NOTE USABLE ITEMS
+      // NOTE USABLE INVENTORY ITEMS
       Basement.UsableItems.Add("lantern");
       Woods.UsableItems.Add("lantern");
       Woods.UsableItems.Add("map");
       Woods.UsableItems.Add("map");
+
+      // NOTE OTHER USABLE ITEMS
+      Den.UsableItems.Add("painting");
       #endregion
 
       CurrentRoom = Woods;

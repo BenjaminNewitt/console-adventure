@@ -34,8 +34,7 @@ namespace ConsoleAdventure.Project.Interfaces
 
     public void RemoveUsableItem(string itemName)
     {
-      string foundItem = UsableItems.Find(i => i == itemName);
-      UsableItems.Remove(foundItem);
+      UsableItems.Remove(itemName);
     }
     public void RemoveItem(Item foundItem)
     {

@@ -138,7 +138,14 @@ namespace ConsoleAdventure.Project
       Item foundItem = _game.CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName);
       if (foundItem == null)
       {
-        PrintInvalidInput();
+        if (itemName == "painting" && _game.CurrentRoom.Name == "Den")
+        {
+          CheckItemUse(itemName);
+        }
+        else
+        {
+          PrintInvalidInput();
+        }
       }
       else
       {
@@ -149,7 +156,7 @@ namespace ConsoleAdventure.Project
     }
 
 
-    public void UseItem(string itemName)
+    public void UseInventoryItem(string itemName)
     {
       Item foundItem = _game.CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName);
       if (foundItem == null)
@@ -163,7 +170,7 @@ namespace ConsoleAdventure.Project
           case "lantern":
             Messages.Add("You light the lantern.");
             Messages.Add("");
-            checkItemUse(itemName);
+            CheckItemUse(itemName);
             break;
           case "compass":
             Messages.Add("You bring out the compass.");
@@ -179,7 +186,7 @@ namespace ConsoleAdventure.Project
     }
     #endregion
 
-    public void checkItemUse(string itemName)
+    public void CheckItemUse(string itemName)
     {
       bool isItemUsable = _game.CurrentRoom.CheckItemUse(itemName);
       if (isItemUsable == true)
@@ -190,32 +197,40 @@ namespace ConsoleAdventure.Project
           case "Basement":
             if (itemName == "lantern")
             {
-              updateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall.");
-              removeUsableItem(itemName);
+              UpdateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall.");
+              RemoveUsableItem(itemName);
               PrintCurrentRoomDes();
-              updateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall to the west remains as the only notable feature.");
+              UpdateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall to the west remains as the only notable feature.");
             }
             else
             {
-              Messages.Add($"The {itemName} has no use here");
+              Messages.Add($"The {itemName} has no use here.");
             };
             break;
+          case "Den":
+            if (itemName == "painting")
+            {
+              Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
+              RemoveUsableItem(itemName);
+            }
+            break;
           default:
-            Messages.Add("You can't use that item here");
+            Messages.Add($"bringing out the {itemName} does nothing here.");
             break;
         }
       }
       else
       {
-        Messages.Add("That item can't be used here");
+        Messages.Add($"Using the {itemName} has no affect.");
       }
     }
-    public void updateDesc(string desc)
+    public void UpdateDesc(string desc)
     {
       _game.CurrentRoom.ChangeDesc(desc);
     }
 
-    public void removeUsableItem(string itemName)
+
+    public void RemoveUsableItem(string itemName)
     {
       _game.CurrentRoom.RemoveUsableItem(itemName);
     }
