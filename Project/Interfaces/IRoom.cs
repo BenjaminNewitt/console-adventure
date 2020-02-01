@@ -18,12 +18,17 @@ namespace ConsoleAdventure.Project.Interfaces
         IRoom newRoom = Exits[direction];
         return newRoom;
       }
-      return this;
+      return null;
     }
 
     public void RemoveItem(Item foundItem)
     {
       Items.Remove(foundItem);
+    }
+
+    public void ChangeDesc(string newDesc)
+    {
+      Description = newDesc;
     }
   }
 }
