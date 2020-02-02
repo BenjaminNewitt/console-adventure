@@ -41,6 +41,37 @@ namespace ConsoleAdventure.Project
 ");
     }
 
+    public void PrintCongrats()
+    {
+      Messages.Add(@"
+ _____ _____ _   _ _____ ______  ___ _____ _   _ _       ___ _____ _____ _____ _   _  _____ 
+/  __ \  _  | \ | |  __ \| ___ \/ _ \_   _| | | | |     / _ \_   _|_   _|  _  | \ | |/  ___|
+| /  \/ | | |  \| | |  \/| |_/ / /_\ \| | | | | | |    / /_\ \| |   | | | | | |  \| |\ `--. 
+| |   | | | | . ` | | __ |    /|  _  || | | | | | |    |  _  || |   | | | | | | . ` | `--. \
+| \__/\ \_/ / |\  | |_\ \| |\ \| | | || | | |_| | |____| | | || |  _| |_\ \_/ / |\  |/\__/ /
+ \____/\___/\_| \_/\____/\_| \_\_| |_/\_/  \___/\_____/\_| |_/\_/  \___/ \___/\_| \_/\____/ 
+                                                                                            
+                                                                                            
+");
+    }
+    public void PrintGameOver()
+    {
+      Messages.Add(@"
+                                                                                       
+ @@@@@@@@   @@@@@@   @@@@@@@@@@   @@@@@@@@      @@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@   
+@@@@@@@@@  @@@@@@@@  @@@@@@@@@@@  @@@@@@@@     @@@@@@@@  @@@  @@@  @@@@@@@@  @@@@@@@@  
+!@@        @@!  @@@  @@! @@! @@!  @@!          @@!  @@@  @@!  @@@  @@!       @@!  @@@  
+!@!        !@!  @!@  !@! !@! !@!  !@!          !@!  @!@  !@!  @!@  !@!       !@!  @!@  
+!@! @!@!@  @!@!@!@!  @!! !!@ @!@  @!!!:!       @!@  !@!  @!@  !@!  @!!!:!    @!@!!@!   
+!!! !!@!!  !!!@!!!!  !@!   ! !@!  !!!!!:       !@!  !!!  !@!  !!!  !!!!!:    !!@!@!    
+:!!   !!:  !!:  !!!  !!:     !!:  !!:          !!:  !!!  :!:  !!:  !!:       !!: :!!   
+:!:   !::  :!:  !:!  :!:     :!:  :!:          :!:  !:!   ::!!:!   :!:       :!:  !:!  
+ ::: ::::  ::   :::  :::     ::    :: ::::     ::::: ::    ::::     :: ::::  ::   :::  
+ :: :: :    :   : :   :      :    : :: ::       : :  :      :      : :: ::    :   : :  
+                                                                                       
+");
+    }
+
     // TODO Rewrite PrintIntroMessage
     public void PrintIntroMessage()
     {
@@ -156,7 +187,7 @@ namespace ConsoleAdventure.Project
       Item foundItem = _game.CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName);
       if (foundItem == null)
       {
-        if (itemName == "painting" && _game.CurrentRoom.Name == "Den")
+        if (itemName == "painting")
         {
           UseItem(itemName);
         }
@@ -167,10 +198,17 @@ namespace ConsoleAdventure.Project
       }
       else
       {
-        _game.CurrentRoom.RemoveItem(foundItem);
-        _game.CurrentPlayer.AddItem(foundItem);
-        Messages.Add($"You added the {itemName} to inventory");
-        OnTaken(itemName);
+        if (foundItem.IsHidden == true)
+        {
+          _game.CurrentRoom.RemoveItem(foundItem);
+          _game.CurrentPlayer.AddItem(foundItem);
+          Messages.Add($"You added the {itemName} to your inventory");
+          OnTaken(itemName);
+        }
+        else
+        {
+          PrintInvalidInput();
+        }
       }
     }
 
@@ -218,19 +256,29 @@ namespace ConsoleAdventure.Project
     }
     #endregion
 
+    // NOTE 
+
     public void UseItem(string itemName)
     {
-      // Use item that exists in the room
-      switch (itemName)
+      if (_game.CurrentRoom.UsableItems.Contains(itemName))
       {
-        case "painting":
-          Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
-          RemoveUsableItem(itemName);
-          UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. A fragile map hangs on the wall.");
-          AddItemToCurrentRoom("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
-          break;
-        default:
-          break;
+
+        // Use item that exists in the room
+        switch (itemName)
+        {
+          case "painting":
+            Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
+            RevealHiddenItem("Map");
+            RemoveUsableItem(itemName);
+            UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. A fragile map hangs on the wall.");
+            break;
+          default:
+            break;
+        }
+      }
+      else
+      {
+        PrintInvalidInput();
       }
     }
 
@@ -277,6 +325,7 @@ namespace ConsoleAdventure.Project
           break;
       }
     }
+
     public void UpdateDesc(string desc)
     {
       _game.CurrentRoom.ChangeDesc(desc);
@@ -287,9 +336,9 @@ namespace ConsoleAdventure.Project
     {
       _game.CurrentRoom.RemoveUsableItem(itemName);
     }
-    public void AddItemToCurrentRoom(string itemName, string itemDesc)
+    public void RevealHiddenItem(string itemName)
     {
-      _game.CurrentRoom.AddItem(itemName, itemDesc);
+      _game.CurrentRoom.RevealHiddenItem(itemName);
     }
 
     // NOTE WIN/LOSE CONDITION
@@ -305,45 +354,21 @@ namespace ConsoleAdventure.Project
       if (Inventory.Contains("Map") && Inventory.Contains("Lantern") && Inventory.Contains("Compass"))
       {
         YouWin();
-        Messages.Add(@"
- _____ _____ _   _ _____ ______  ___ _____ _   _ _       ___ _____ _____ _____ _   _  _____ 
-/  __ \  _  | \ | |  __ \| ___ \/ _ \_   _| | | | |     / _ \_   _|_   _|  _  | \ | |/  ___|
-| /  \/ | | |  \| | |  \/| |_/ / /_\ \| | | | | | |    / /_\ \| |   | | | | | |  \| |\ `--. 
-| |   | | | | . ` | | __ |    /|  _  || | | | | | |    |  _  || |   | | | | | | . ` | `--. \
-| \__/\ \_/ / |\  | |_\ \| |\ \| | | || | | |_| | |____| | | || |  _| |_\ \_/ / |\  |/\__/ /
- \____/\___/\_| \_/\____/\_| \_\_| |_/\_/  \___/\_____/\_| |_/\_/  \___/ \___/\_| \_/\____/ 
-                                                                                            
-                                                                                            
-");
       }
       else
       {
         YouLose();
-        Messages.Add(@"
-                                                                                       
- @@@@@@@@   @@@@@@   @@@@@@@@@@   @@@@@@@@      @@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@   
-@@@@@@@@@  @@@@@@@@  @@@@@@@@@@@  @@@@@@@@     @@@@@@@@  @@@  @@@  @@@@@@@@  @@@@@@@@  
-!@@        @@!  @@@  @@! @@! @@!  @@!          @@!  @@@  @@!  @@@  @@!       @@!  @@@  
-!@!        !@!  @!@  !@! !@! !@!  !@!          !@!  @!@  !@!  @!@  !@!       !@!  @!@  
-!@! @!@!@  @!@!@!@!  @!! !!@ @!@  @!!!:!       @!@  !@!  @!@  !@!  @!!!:!    @!@!!@!   
-!!! !!@!!  !!!@!!!!  !@!   ! !@!  !!!!!:       !@!  !!!  !@!  !!!  !!!!!:    !!@!@!    
-:!!   !!:  !!:  !!!  !!:     !!:  !!:          !!:  !!!  :!:  !!:  !!:       !!: :!!   
-:!:   !::  :!:  !:!  :!:     :!:  :!:          :!:  !:!   ::!!:!   :!:       :!:  !:!  
- ::: ::::  ::   :::  :::     ::    :: ::::     ::::: ::    ::::     :: ::::  ::   :::  
- :: :: :    :   : :   :      :    : :: ::       : :  :      :      : :: ::    :   : :  
-                                                                                       
-");
       }
     }
 
     public void YouWin()
     {
-
+      PrintCongrats();
     }
 
     public void YouLose()
     {
-
+      PrintGameOver();
     }
 
     // NOTE Unused Actions

@@ -16,7 +16,7 @@ namespace ConsoleAdventure.Project.Models
       #region
       // TODO Update descriptions
       Room Woods = new Room("The forest path", "To the north lies an abandoned structure. The path south into the forest is pitch black. If you walk down it, you will may never leave the forest.");
-      Room FrontPorch = new Room("Front porch", "As you walk up the stairs to the front door, the boards creak under your footsteps.");
+      Room FrontPorch = new Room("Front porch", "The boards creak under your footsteps as you step onto the porch. To the north, the front door of the house lies open.");
       Room EastSide = new Room("Eastern side of the house", "Nothing of notice takes your interest as you travel along the eastern side of the building.");
       Room WestSide = new Room("Western side of the house", "Traveling along the west side of the house shows nothing to be of interest.");
       Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single window.");
@@ -50,13 +50,13 @@ namespace ConsoleAdventure.Project.Models
       #region 
       // NOTE INVENTORY ITEMS
       // NOTE KEY ITEMS
-      Item Compass = new Item("Compass", "A rusted, but usable, compass.");
-      Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.");
-
+      Item Compass = new Item("Compass", "A rusted, but usable, compass.", false);
+      Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.", false);
+      Item Map = new Item("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.", false);
       // NOTE RED HERRINGS
 
       // NOTE INVENTORY ITEMS ADDED TO ROOMS
-      // Den.Items.Add(Map);
+      Den.Items.Add(Map);
       BackOfHouse.Items.Add(Lantern);
       Basement.Items.Add(Compass);
 

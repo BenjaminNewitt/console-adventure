@@ -48,10 +48,11 @@ namespace ConsoleAdventure.Project.Interfaces
       Description = newDesc;
     }
 
-    public void AddItem(string itemName, string itemDesc)
+    public void RevealHiddenItem(string itemName)
     {
-      Item newItem = new Item(itemName, itemDesc);
-      Items.Add(newItem);
+      Item revealedItem = Items.Find(i => i.Name == itemName);
+
+      revealedItem.IsHidden = true;
     }
   }
 }

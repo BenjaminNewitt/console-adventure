@@ -8,10 +8,12 @@ namespace ConsoleAdventure.Project.Models
 
     public string Name { get; set; }
     public string Description { get; set; }
-    public Item(string name, string description)
+    public bool IsHidden { get; set; }
+    public Item(string name, string description, bool isHidden)
     {
       Name = name;
       Description = description;
+      IsHidden = isHidden;
     }
   }
 }
