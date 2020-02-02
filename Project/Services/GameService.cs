@@ -153,18 +153,18 @@ namespace ConsoleAdventure.Project
       Messages.Add(@"
 ~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
 
-    go (direction)~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
-    look          ~~~~~~~~~~~~~~~ check your surroundings
-    inventory     ~~~~~~~~~~~~~~~ view your inventory
-    take (item)   ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
-    use (item)    ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
-    quit          ~~~~~~~~~~~~~~~ quit the game
+    go (direction) ~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
+    look           ~~~~~~~~~~~~~~~ check your surroundings
+    inventory      ~~~~~~~~~~~~~~~ view your inventory
+    take (item)    ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
+    use (item)     ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
+    quit           ~~~~~~~~~~~~~~~ quit the game
       ");
     }
 
     public void Inventory()
     {
-      Messages.Add("~~~~~{Inventory}~~~~~");
+      Messages.Add(@"~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Inventory}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~");
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
@@ -342,16 +342,15 @@ namespace ConsoleAdventure.Project
     }
 
     // NOTE WIN/LOSE CONDITION
-
     public void Endgame()
     {
       List<string> Inventory = new List<string>();
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name);
+        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name.ToLower());
       }
-      if (Inventory.Contains("Map") && Inventory.Contains("Lantern") && Inventory.Contains("Compass"))
+      if (Inventory.Contains("map") && Inventory.Contains("lantern") && Inventory.Contains("compass"))
       {
         YouWin();
       }
