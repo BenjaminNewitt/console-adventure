@@ -242,13 +242,17 @@ namespace ConsoleAdventure.Project
           case "lantern":
             Messages.Add("You light the lantern.");
             Messages.Add("");
-            CheckInventoryItemUse(itemName);
+            UseInventoryItem(itemName);
             break;
           case "compass":
             Messages.Add("You bring out the compass.");
+            Messages.Add("");
+            UseInventoryItem(itemName);
             break;
           case "map":
             Messages.Add("You unfurl the map.");
+            Messages.Add("");
+            UseInventoryItem(itemName);
             break;
           default:
             PrintInvalidInput();
@@ -284,7 +288,7 @@ namespace ConsoleAdventure.Project
       }
     }
 
-    public void CheckInventoryItemUse(string itemName)
+    public void UseInventoryItem(string itemName)
     {
       bool isItemUsable = _game.CurrentRoom.CheckItemUse(itemName);
       if (isItemUsable == true)
@@ -297,6 +301,7 @@ namespace ConsoleAdventure.Project
             {
               UpdateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall.");
               RemoveUsableItem(itemName);
+              RevealHiddenItem("Compass");
               PrintCurrentRoomDes();
               UpdateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall to the west remains as the only notable feature.");
             }
@@ -346,13 +351,23 @@ namespace ConsoleAdventure.Project
     // NOTE WIN/LOSE CONDITION
     public void Endgame()
     {
-      List<string> Inventory = new List<string>();
       int index = 0;
+      int score = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name.ToLower());
+        switch (_game.CurrentPlayer.Inventory[index].Name)
+        {
+          case "Compass":
+          case "Lantern":
+          case "Map":
+            score++;
+            break;
+          default:
+            break;
+        }
+        index++;
       }
-      if (Inventory.Contains("map") && Inventory.Contains("lantern") && Inventory.Contains("compass"))
+      if (score == 3)
       {
         YouWin();
       }
