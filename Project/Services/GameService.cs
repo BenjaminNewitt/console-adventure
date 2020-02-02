@@ -190,6 +190,7 @@ namespace ConsoleAdventure.Project
         }
         else
         {
+          UseItem(usableItem);
           // If item exists in room, pass it to UseItem
         }
       }
@@ -225,7 +226,7 @@ namespace ConsoleAdventure.Project
         case "painting":
           Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
           RemoveUsableItem(itemName);
-          UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. Where the painting once hung now reveals a frail map.");
+          UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. A fragile map hangs on the wall.");
           AddItemToCurrentRoom("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
           break;
         default:
