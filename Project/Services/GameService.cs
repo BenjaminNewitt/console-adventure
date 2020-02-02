@@ -79,24 +79,42 @@ namespace ConsoleAdventure.Project
 
     // NOTE Actions
     #region
-    public void Go(string direction)
+    public bool Go(string direction)
     {
+      bool IsEndOfGame = false;
       if (direction != "north" && direction != "south" && direction != "east" && direction != "west")
       {
         PrintInvalidInput();
+        return true;
       }
       else
       {
         IRoom newRoom = _game.CurrentRoom.ChangeRoom(direction);
         if (newRoom == null)
         {
-          Messages.Add("You can't travel in that direction");
+          if (_game.CurrentRoom.Name == "The forest path" && direction == "south")
+          {
+            IsConditionMet();
+            IsEndOfGame = true;
+          }
+          else
+          {
+            Messages.Add("You can't travel in that direction");
+          }
         }
         else if (newRoom != null)
         {
           _game.CurrentRoom = newRoom;
           PrintCurrentRoomDes();
         }
+      }
+      if (IsEndOfGame == true)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
       }
     }
     public void Help()
@@ -238,6 +256,38 @@ namespace ConsoleAdventure.Project
     public void AddItemToCurrentRoom(string itemName, string itemDesc)
     {
       _game.CurrentRoom.AddItem(itemName, itemDesc);
+    }
+
+    // NOTE WIN/LOSE CONDITION
+
+    public bool IsConditionMet()
+    {
+      List<string> Inventory = new List<string>();
+      int index = 0;
+      foreach (Item item in _game.CurrentPlayer.Inventory)
+      {
+        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name.ToLower());
+      }
+      if (Inventory.Contains("map") && Inventory.Contains("lantern") && Inventory.Contains("compass"))
+      {
+        YouWin();
+        return true;
+      }
+      else
+      {
+        YouLose();
+        return false;
+      }
+    }
+
+    public void YouWin()
+    {
+
+    }
+
+    public void YouLose()
+    {
+
     }
 
     // NOTE Unused Actions

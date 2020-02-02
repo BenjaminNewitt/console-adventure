@@ -58,7 +58,10 @@ namespace ConsoleAdventure.Project.Controllers
         case "walk":
         case "run":
         case "travel":
-          _gameService.Go(option);
+          if (_gameService.Go(option) == false)
+          {
+            _playing = false;
+          }
           break;
         case "look":
           _gameService.Look();

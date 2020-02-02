@@ -79,6 +79,7 @@ namespace ConsoleAdventure.Project.Models
     public Game()
     {
       Setup();
+
     }
 
   }
