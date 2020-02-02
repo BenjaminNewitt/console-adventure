@@ -42,6 +42,7 @@ namespace ConsoleAdventure.Project.Models
       LivingRoom.Exits.Add("south", FrontPorch);
       LivingRoom.Exits.Add("west", Basement);
       Den.Exits.Add("south", LivingRoom);
+      Basement.Exits.Add("east", LivingRoom);
 
       #endregion
 
