@@ -49,14 +49,13 @@ namespace ConsoleAdventure.Project.Models
       #region 
       // NOTE INVENTORY ITEMS
       // NOTE KEY ITEMS
-      Item Map = new Item("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
       Item Compass = new Item("Compass", "A rusted, but usable, compass.");
       Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.");
 
       // NOTE RED HERRINGS
 
       // NOTE INVENTORY ITEMS ADDED TO ROOMS
-      Den.Items.Add(Map);
+      // Den.Items.Add(Map);
       BackOfHouse.Items.Add(Lantern);
       Basement.Items.Add(Compass);
 
@@ -67,7 +66,7 @@ namespace ConsoleAdventure.Project.Models
       Basement.UsableItems.Add("lantern");
       Woods.UsableItems.Add("lantern");
       Woods.UsableItems.Add("map");
-      Woods.UsableItems.Add("map");
+      Woods.UsableItems.Add("compass");
 
       // NOTE OTHER USABLE ITEMS
       Den.UsableItems.Add("painting");

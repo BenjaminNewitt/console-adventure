@@ -45,5 +45,11 @@ namespace ConsoleAdventure.Project.Interfaces
     {
       Description = newDesc;
     }
+
+    public void AddItem(string itemName, string itemDesc)
+    {
+      Item newItem = new Item(itemName, itemDesc);
+      Items.Add(newItem);
+    }
   }
 }

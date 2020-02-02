@@ -212,6 +212,7 @@ namespace ConsoleAdventure.Project
             {
               Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
               RemoveUsableItem(itemName);
+              AddItemToCurrentRoom("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
             }
             break;
           default:
@@ -233,6 +234,10 @@ namespace ConsoleAdventure.Project
     public void RemoveUsableItem(string itemName)
     {
       _game.CurrentRoom.RemoveUsableItem(itemName);
+    }
+    public void AddItemToCurrentRoom(string itemName, string itemDesc)
+    {
+      _game.CurrentRoom.AddItem(itemName, itemDesc);
     }
 
     // NOTE Unused Actions
