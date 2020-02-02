@@ -158,7 +158,7 @@ namespace ConsoleAdventure.Project
       {
         if (itemName == "painting" && _game.CurrentRoom.Name == "Den")
         {
-          CheckItemUse(itemName);
+          UseItem(itemName);
         }
         else
         {
@@ -170,25 +170,38 @@ namespace ConsoleAdventure.Project
         _game.CurrentRoom.RemoveItem(foundItem);
         _game.CurrentPlayer.AddItem(foundItem);
         Messages.Add($"You added the {itemName} to inventory");
+        OnTaken(itemName);
       }
     }
 
 
-    public void UseItem(string itemName)
+    public void FilterItemUse(string itemName)
     {
+      // Check player inventory for item
       Item foundItem = _game.CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName);
       if (foundItem == null)
       {
-        PrintInvalidInput();
+        // if not found in inventory, check if usable item is in the room
+        string usableItem = _game.CurrentRoom.UsableItems.Find(i => i == itemName);
+        if (usableItem == null)
+        {
+          // if neither true, print invalid input
+          PrintInvalidInput();
+        }
+        else
+        {
+          // If item exists in room, pass it to UseItem
+        }
       }
       else
       {
+        // On use inventory item
         switch (itemName)
         {
           case "lantern":
             Messages.Add("You light the lantern.");
             Messages.Add("");
-            CheckItemUse(itemName);
+            CheckInventoryItemUse(itemName);
             break;
           case "compass":
             Messages.Add("You bring out the compass.");
@@ -204,7 +217,23 @@ namespace ConsoleAdventure.Project
     }
     #endregion
 
-    public void CheckItemUse(string itemName)
+    public void UseItem(string itemName)
+    {
+      // Use item that exists in the room
+      switch (itemName)
+      {
+        case "painting":
+          Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
+          RemoveUsableItem(itemName);
+          UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. Where the painting once hung now reveals a frail map.");
+          AddItemToCurrentRoom("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
+          break;
+        default:
+          break;
+      }
+    }
+
+    public void CheckInventoryItemUse(string itemName)
     {
       bool isItemUsable = _game.CurrentRoom.CheckItemUse(itemName);
       if (isItemUsable == true)
@@ -225,14 +254,6 @@ namespace ConsoleAdventure.Project
               Messages.Add($"The {itemName} has no use here.");
             };
             break;
-          case "Den":
-            if (itemName == "painting")
-            {
-              Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
-              RemoveUsableItem(itemName);
-              AddItemToCurrentRoom("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.");
-            }
-            break;
           default:
             Messages.Add($"bringing out the {itemName} does nothing here.");
             break;
@@ -241,6 +262,18 @@ namespace ConsoleAdventure.Project
       else
       {
         Messages.Add($"Using the {itemName} has no affect.");
+      }
+    }
+
+    public void OnTaken(string itemName)
+    {
+      switch (itemName)
+      {
+        case "map":
+          UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits.");
+          break;
+        default:
+          break;
       }
     }
     public void UpdateDesc(string desc)
@@ -266,9 +299,9 @@ namespace ConsoleAdventure.Project
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name.ToLower());
+        Inventory.Add(_game.CurrentPlayer.Inventory[index].Name);
       }
-      if (Inventory.Contains("map") && Inventory.Contains("lantern") && Inventory.Contains("compass"))
+      if (Inventory.Contains("Map") && Inventory.Contains("Lantern") && Inventory.Contains("Compass"))
       {
         YouWin();
         Messages.Add(@"

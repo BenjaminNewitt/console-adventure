@@ -12,6 +12,8 @@ namespace ConsoleAdventure.Project.Interfaces
 
     List<string> UsableItems { get; set; }
 
+    List<string> UsableInventoryItems { get; set; }
+
 
     public IRoom ChangeRoom(string direction)
     {
@@ -25,7 +27,7 @@ namespace ConsoleAdventure.Project.Interfaces
 
     public bool CheckItemUse(string itemName)
     {
-      if (UsableItems.Contains(itemName.ToLower()))
+      if (UsableInventoryItems.Contains(itemName.ToLower()))
       {
         return true;
       }

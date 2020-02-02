@@ -13,6 +13,8 @@ namespace ConsoleAdventure.Project.Models
 
     public List<string> UsableItems { get; set; }
 
+    public List<string> UsableInventoryItems { get; set; }
+
     public Room(string name, string description)
     {
       Name = name;
@@ -20,6 +22,7 @@ namespace ConsoleAdventure.Project.Models
       Items = new List<Item>();
       Exits = new Dictionary<string, IRoom>();
       UsableItems = new List<string>();
+      UsableInventoryItems = new List<string>();
     }
 
 

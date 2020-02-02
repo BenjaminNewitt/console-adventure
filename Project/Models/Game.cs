@@ -64,10 +64,10 @@ namespace ConsoleAdventure.Project.Models
 
       #region 
       // NOTE USABLE INVENTORY ITEMS
-      Basement.UsableItems.Add("lantern");
-      Woods.UsableItems.Add("lantern");
-      Woods.UsableItems.Add("map");
-      Woods.UsableItems.Add("compass");
+      Basement.UsableInventoryItems.Add("lantern");
+      Woods.UsableInventoryItems.Add("lantern");
+      Woods.UsableInventoryItems.Add("map");
+      Woods.UsableInventoryItems.Add("compass");
 
       // NOTE OTHER USABLE ITEMS
       Den.UsableItems.Add("painting");

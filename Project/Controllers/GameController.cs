@@ -73,7 +73,7 @@ namespace ConsoleAdventure.Project.Controllers
           _gameService.TakeItem(option);
           break;
         case "use":
-          _gameService.UseItem(option);
+          _gameService.FilterItemUse(option);
           break;
         default:
           _gameService.PrintInvalidInput();
