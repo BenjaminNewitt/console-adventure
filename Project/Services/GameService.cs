@@ -168,7 +168,7 @@ namespace ConsoleAdventure.Project
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Messages.Add($"{_game.CurrentPlayer.Inventory[index].Name}");
+        Messages.Add($"{_game.CurrentPlayer.Inventory[index].Name} ~~~~~ {_game.CurrentPlayer.Inventory[index].Description}");
         index++;
       }
     }
@@ -198,7 +198,7 @@ namespace ConsoleAdventure.Project
       }
       else
       {
-        if (foundItem.IsHidden == true)
+        if (foundItem.IsHidden == false)
         {
           _game.CurrentRoom.RemoveItem(foundItem);
           _game.CurrentPlayer.AddItem(foundItem);

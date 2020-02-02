@@ -52,7 +52,7 @@ namespace ConsoleAdventure.Project.Interfaces
     {
       Item revealedItem = Items.Find(i => i.Name == itemName);
 
-      revealedItem.IsHidden = true;
+      revealedItem.IsHidden = false;
     }
   }
 }
