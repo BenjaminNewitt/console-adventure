@@ -15,9 +15,7 @@ namespace ConsoleAdventure.Project.Models
 
     public List<string> UsableInventoryItems { get; set; }
 
-    public bool IsHidden { get; set; }
-
-    public Room(string name, string description, bool isHidden)
+    public Room(string name, string description)
     {
       Name = name;
       Description = description;
@@ -25,7 +23,6 @@ namespace ConsoleAdventure.Project.Models
       Exits = new Dictionary<string, IRoom>();
       UsableItems = new List<string>();
       UsableInventoryItems = new List<string>();
-      IsHidden = isHidden;
     }
 
 

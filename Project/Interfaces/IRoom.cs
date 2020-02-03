@@ -10,8 +10,6 @@ namespace ConsoleAdventure.Project.Interfaces
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
-    bool IsHidden { get; set; }
-
     List<string> UsableItems { get; set; }
 
     List<string> UsableInventoryItems { get; set; }
