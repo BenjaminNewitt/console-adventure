@@ -83,7 +83,6 @@ namespace ConsoleAdventure.Project
 ", ConsoleColor.DarkRed));
     }
 
-    // TODO Rewrite PrintIntroMessage
     public void PrintIntroMessage()
     {
       Messages.Add(new Message($"{_game.CurrentRoom.Description}"));
@@ -117,6 +116,13 @@ namespace ConsoleAdventure.Project
                                                   ▀                       █          ▀                               █   ██          
                                                                          ▀                                                           
 ", ConsoleColor.DarkGray));
+    }
+
+    public void PrintRuleOne()
+    {
+      Messages.Add(new Message(@"
+__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,___
+"));
     }
 
     #endregion

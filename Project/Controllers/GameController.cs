@@ -16,6 +16,7 @@ namespace ConsoleAdventure.Project.Controllers
     {
       _gameService.PrintTitle();
       _gameService.PrintCredit();
+      _gameService.PrintRuleOne();
       _gameService.PrintChooseAny();
       Print();
       Console.ReadKey();
@@ -36,7 +37,9 @@ namespace ConsoleAdventure.Project.Controllers
     //NOTE Gets the user input, calls the appropriate command, and passes on the option if needed.
     public void GetUserInput()
     {
-      Console.Write("What will you do? ");
+      _gameService.PrintRuleOne();
+      Print();
+      Console.Write("      What will you do? ");
       string input = Console.ReadLine().ToLower() + " ";
       string command = input.Substring(0, input.IndexOf(" "));
       string option = input.Substring(input.IndexOf(" ") + 1).Trim();
