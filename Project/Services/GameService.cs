@@ -4,23 +4,26 @@ using ConsoleAdventure.Project.Models;
 
 namespace ConsoleAdventure.Project
 {
-  public class GameService : IGameService
+  class GameService : IGameService
   {
     private IGame _game { get; set; }
 
-    public List<string> Messages { get; set; }
+
+    public List<Message> Messages { get; set; } = new List<Message>();
+
     public GameService()
     {
       _game = new Game();
-      Messages = new List<string>();
+
+
     }
 
     // NOTE Utility Messages
-    // TODO move messages to utils
+    // TODO move Messages to utils
     #region
     public void PrintTitle()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
 
 
                      ▄█  ███▄▄▄▄            ███        ▄█    █▄       ▄████████       ▄█     █▄   ▄██████▄   ▄██████▄  ████████▄     ▄████████ 
@@ -32,20 +35,21 @@ namespace ConsoleAdventure.Project
                     ███  ███   ███          ███       ███    ███     ███    ███      ███ ▄█▄ ███ ███    ███ ███    ███ ███   ▄███    ▄█    ███ 
                     █▀    ▀█   █▀          ▄████▀     ███    █▀      ██████████       ▀███▀███▀   ▀██████▀   ▀██████▀  ████████▀   ▄████████▀  
                                                                                                                                                
-");
+"
+      ));
     }
     public void PrintCredit()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
                                                _                       _        o                                  
                                          _    (_| _ __  _    |_  \/   |_) _ __  |  _ __  o __    |\| _     o _|__|_
                                         (_|   __|(_||||(/_   |_) /    |_)(/_| |_| (_|||| | | |   | |(/_\^/ |  |_ |_
-");
+"));
     }
 
     public void PrintCongrats()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
 
       
                           _____ _____ _   _ _____ ______  ___ _____ _   _ _       ___ _____ _____ _____ _   _  _____ 
@@ -56,11 +60,11 @@ namespace ConsoleAdventure.Project
                           \____/\___/\_| \_/\____/\_| \_\_| |_/\_/  \___/\_____/\_| |_/\_/  \___/ \___/\_| \_/\____/ 
                                                                                                                      
                                                                                                                      
-");
+"));
     }
     public void PrintGameOver()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
 
 
                                                                                                                                 
@@ -75,33 +79,33 @@ namespace ConsoleAdventure.Project
                                           ::: ::::  ::   :::  :::     ::    :: ::::     ::::: ::    ::::     :: ::::  ::   :::  
                                           :: :: :    :   : :   :      :    : :: ::       : :  :      :      : :: ::    :   : :  
                                                                                                                                 
-");
+"));
     }
 
     // TODO Rewrite PrintIntroMessage
     public void PrintIntroMessage()
     {
-      Messages.Add($"{_game.CurrentRoom.Description}");
+      Messages.Add(new Message($"{_game.CurrentRoom.Description}"));
     }
 
     public void PrintChooseAny()
     {
-      Messages.Add("press any key to continue");
+      Messages.Add(new Message("press any key to continue"));
     }
 
     public void PrintInvalidInput()
     {
-      Messages.Add("action not recognized");
+      Messages.Add(new Message("action not recognized"));
     }
 
     public void PrintCurrentRoomDes()
     {
-      Messages.Add($"{_game.CurrentRoom.Description}");
+      Messages.Add(new Message($"{_game.CurrentRoom.Description}"));
     }
 
     public void PrintQuitMessage()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
 
 
                                    ▄█▄    ████▄ █▀▄▀█ ▄███▄       ███   ██   ▄█▄    █  █▀        ▄▄▄▄▄   ████▄ ████▄    ▄            
@@ -111,7 +115,7 @@ namespace ConsoleAdventure.Project
                                    ▀███▀           █  ▀███▀       ███      █ ▀███▀    █                              █  █ █ ██ ██ ██ 
                                                   ▀                       █          ▀                               █   ██          
                                                                          ▀                                                           
-");
+"));
     }
 
     #endregion
@@ -138,7 +142,7 @@ namespace ConsoleAdventure.Project
           }
           else
           {
-            Messages.Add("You can't travel in that direction");
+            Messages.Add(new Message("You can't travel in that direction"));
           }
         }
         else if (newRoom != null)
@@ -158,7 +162,7 @@ namespace ConsoleAdventure.Project
     }
     public void Help()
     {
-      Messages.Add(@"
+      Messages.Add(new Message(@"
 ~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
 
     go (direction) ~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
@@ -167,16 +171,16 @@ namespace ConsoleAdventure.Project
     take (item)    ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
     use (item)     ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
     quit           ~~~~~~~~~~~~~~~ quit the game
-      ");
+      "));
     }
 
     public void Inventory()
     {
-      Messages.Add(@"~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Inventory}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~");
+      Messages.Add(new Message(@"~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Inventory}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~"));
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Messages.Add($"{_game.CurrentPlayer.Inventory[index].Name} ~~~~~ {_game.CurrentPlayer.Inventory[index].Description}");
+        Messages.Add(new Message($"{_game.CurrentPlayer.Inventory[index].Name} ~~~~~ {_game.CurrentPlayer.Inventory[index].Description}"));
         index++;
       }
     }
@@ -210,7 +214,7 @@ namespace ConsoleAdventure.Project
         {
           _game.CurrentRoom.RemoveItem(foundItem);
           _game.CurrentPlayer.AddItem(foundItem);
-          Messages.Add($"You added the {itemName} to your inventory");
+          Messages.Add(new Message($"You added the {itemName} to your inventory"));
           OnTaken(itemName);
         }
         else
@@ -246,18 +250,18 @@ namespace ConsoleAdventure.Project
         switch (itemName)
         {
           case "lantern":
-            Messages.Add("You light the lantern.");
-            Messages.Add("");
+            Messages.Add(new Message("You light the lantern."));
+            Messages.Add(new Message(""));
             UseInventoryItem(itemName);
             break;
           case "compass":
-            Messages.Add("You bring out the compass.");
-            Messages.Add("");
+            Messages.Add(new Message("You bring out the compass."));
+            Messages.Add(new Message(""));
             UseInventoryItem(itemName);
             break;
           case "map":
-            Messages.Add("You unfurl the map.");
-            Messages.Add("");
+            Messages.Add(new Message("You unfurl the map."));
+            Messages.Add(new Message(""));
             UseInventoryItem(itemName);
             break;
           default:
@@ -279,7 +283,7 @@ namespace ConsoleAdventure.Project
         switch (itemName)
         {
           case "painting":
-            Messages.Add("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment.");
+            Messages.Add(new Message("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment."));
             RevealHiddenItem("Map");
             RemoveUsableItem(itemName);
             UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. A fragile map hangs on the wall.");
@@ -313,17 +317,17 @@ namespace ConsoleAdventure.Project
             }
             else
             {
-              Messages.Add($"The {itemName} has no use here.");
+              Messages.Add(new Message($"The {itemName} has no use here."));
             };
             break;
           default:
-            Messages.Add($"bringing out the {itemName} does nothing here.");
+            Messages.Add(new Message($"bringing out the {itemName} does nothing here."));
             break;
         }
       }
       else
       {
-        Messages.Add($"Using the {itemName} has no affect.");
+        Messages.Add(new Message($"Using the {itemName} has no affect."));
       }
     }
 

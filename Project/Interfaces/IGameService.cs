@@ -5,7 +5,7 @@ namespace ConsoleAdventure.Project.Interfaces
 {
   public interface IGameService
   {
-    List<string> Messages { get; }
+    // public List<Message> Messages { get; set; }
     void Setup(string playerName);
 
     void Reset();

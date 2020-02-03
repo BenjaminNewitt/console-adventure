@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 using ConsoleAdventure.Project.Models;
 
@@ -8,7 +7,7 @@ namespace ConsoleAdventure.Project.Controllers
 
   public class GameController : IGameController
   {
-    private GameService _gameService = new GameService();
+    private GameService _gameService { get; set; } = new GameService();
 
     private bool _playing = true;
 
@@ -82,11 +81,11 @@ namespace ConsoleAdventure.Project.Controllers
     }
 
     //NOTE this should print your messages for the game.
-    private void Print()
+    public void Print()
     {
-      foreach (string message in _gameService.Messages)
+      foreach (Message message in _gameService.Messages)
       {
-        Console.WriteLine(message);
+        message.Print();
       }
       _gameService.Messages.Clear();
     }
