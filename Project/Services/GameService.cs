@@ -148,8 +148,15 @@ namespace ConsoleAdventure.Project
         }
         else if (newRoom != null)
         {
-          _game.CurrentRoom = newRoom;
-          PrintCurrentRoomDes();
+          if (newRoom.IsHidden == false)
+          {
+            _game.CurrentRoom = newRoom;
+            PrintCurrentRoomDes();
+          }
+          else
+          {
+            Messages.Add(new Message("You can't travel in that direction"));
+          }
         }
       }
       if (IsEndOfGame == true)
