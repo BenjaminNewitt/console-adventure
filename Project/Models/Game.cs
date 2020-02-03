@@ -17,10 +17,10 @@ namespace ConsoleAdventure.Project.Models
       Room Woods = new Room("The forest path", "To the north lies an abandoned structure. The path south into the forest is pitch black. If you walk down it, you may never leave the forest.");
       Room FrontPorch = new Room("Front porch", "The boards creak under your footsteps as you step onto the porch. To the north, the front door of the house lies open. A scrap of paper is shoved between the boards.");
       Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single shuttered window.\nOn the window sill stands a lantern. Nothing hinders you from travel along either side of the decrepit building.");
-      Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room. To the west of you lies a stairwell leading downwards, and to the north is another door.");
+      Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room.\nTo the west of you lies a stairwell leading downwards, and to the north is another door.");
       Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. There is a faded painting on the western wall, the only item not in decent condition.");
       Room Basement = new Room("Basement", "With the stairs groaning under your weight with every footstep, you descend into the darkness. It is too dark to see anything.");
-      Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back. A porch to the north leads up to the windowless house. Either side of the house looks to be accessible.");
+      Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back.\nA porch to the north leads up to the windowless house. Either side of the house looks to be accessible.");
 
       Woods.Exits.Add("north", FrontYard);
       FrontYard.Exits.Add("north", FrontPorch);
