@@ -165,24 +165,25 @@ namespace ConsoleAdventure.Project
     public void Help()
     {
       Messages.Add(new Message(@"
-~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~
+~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~~
 
-    go (direction) ~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
-    look           ~~~~~~~~~~~~~~~ check your surroundings
-    inventory      ~~~~~~~~~~~~~~~ view your inventory
-    take (item)    ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
-    use (item)     ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
-    quit           ~~~~~~~~~~~~~~~ quit the game
+         go (direction) ~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
+         look           ~~~~~~~~~~~~~~~ check your surroundings
+         inventory      ~~~~~~~~~~~~~~~ view your inventory
+         take (item)    ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
+         use (item)     ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
+         quit           ~~~~~~~~~~~~~~~ quit the game
       "));
     }
 
     public void Inventory()
     {
-      Messages.Add(new Message(@"~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Inventory}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~"));
+      Messages.Add(new Message(@"
+~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Inventory}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~"));
       int index = 0;
       foreach (Item item in _game.CurrentPlayer.Inventory)
       {
-        Messages.Add(new Message($"{_game.CurrentPlayer.Inventory[index].Name} ~~~~~ {_game.CurrentPlayer.Inventory[index].Description}"));
+        Messages.Add(new Message($"          {_game.CurrentPlayer.Inventory[index].Name} ~~~~~ {_game.CurrentPlayer.Inventory[index].Description}"));
         index++;
       }
     }
@@ -311,11 +312,11 @@ namespace ConsoleAdventure.Project
           case "Basement":
             if (itemName == "lantern")
             {
-              UpdateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall.");
+              UpdateDesc("With lantern in hand, you descend the stairway. The air is musty and thick, oppressing your senses. Only the lantern's dim light gives you some semblance of comfort. A single table lies against the western-most wall. A compass lays on top of the table.");
               RemoveUsableItem(itemName);
               RevealHiddenItem("Compass");
               PrintCurrentRoomDes();
-              UpdateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall to the west remains as the only notable feature.");
+              UpdateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall remains as the only notable feature. A compass lays on top of the table.");
             }
             else
             {
@@ -341,8 +342,10 @@ namespace ConsoleAdventure.Project
           UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits.");
           break;
         case "compass":
+          UpdateDesc("Reigniting your lantern, you take in your surroundings once more. The table set up against the wall remains as the only notable feature.");
           break;
         case "lantern":
+          UpdateDesc("As you come around to the back of the house, you notice a single shuttered window.");
           break;
         default:
           break;
