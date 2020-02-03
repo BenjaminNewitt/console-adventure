@@ -7,6 +7,8 @@ namespace ConsoleAdventure.Project.Interfaces
   {
     string Name { get; set; }
     string Description { get; set; }
+
+    bool IsHidden { get; set; }
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
@@ -53,6 +55,19 @@ namespace ConsoleAdventure.Project.Interfaces
       Item revealedItem = Items.Find(i => i.Name == itemName);
 
       revealedItem.IsHidden = false;
+    }
+
+    public void SwitchIsHidden()
+    {
+      if (IsHidden == true)
+      {
+
+        IsHidden = false;
+      }
+      else
+      {
+        IsHidden = true;
+      }
     }
   }
 }

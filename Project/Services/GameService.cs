@@ -116,7 +116,7 @@ namespace ConsoleAdventure.Project
                                    ▀███▀           █  ▀███▀       ███      █ ▀███▀    █                              █  █ █ ██ ██ ██ 
                                                   ▀                       █          ▀                               █   ██          
                                                                          ▀                                                           
-"));
+", ConsoleColor.DarkGray));
     }
 
     #endregion
@@ -148,8 +148,15 @@ namespace ConsoleAdventure.Project
         }
         else if (newRoom != null)
         {
-          _game.CurrentRoom = newRoom;
-          PrintCurrentRoomDes();
+          if (newRoom.IsHidden == false)
+          {
+            _game.CurrentRoom = newRoom;
+            PrintCurrentRoomDes();
+          }
+          else
+          {
+            Messages.Add(new Message("You can't go that way"));
+          }
         }
       }
       if (IsEndOfGame == true)
@@ -226,7 +233,6 @@ namespace ConsoleAdventure.Project
       }
     }
 
-
     public void FilterItemUse(string itemName)
     {
       // Check player inventory for item
@@ -291,6 +297,13 @@ namespace ConsoleAdventure.Project
             RevealHiddenItem("Map");
             RemoveUsableItem(itemName);
             UpdateDesc("Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. A fragile map hangs on the wall.");
+            break;
+          case "door":
+            Messages.Add(new Message("With some effort, you force the door open and enter the room."));
+            Messages.Add(new Message(""));
+            UpdateDesc("Inside of the house lies an empty room.\nTo the west of you lies a stairwell leading downwards, and to the north lies the den.");
+            RemoveUsableItem(itemName);
+            ChangeRoomOnUnlock();
             break;
           default:
             break;
@@ -369,6 +382,22 @@ namespace ConsoleAdventure.Project
     {
       _game.CurrentRoom.RevealHiddenItem(itemName);
     }
+
+    public void ChangeRoomOnUnlock()
+    {
+      if (_game.CurrentRoom.Name == "House Interior")
+      {
+        IRoom newRoom = _game.CurrentRoom.ChangeRoom("north");
+        _game.CurrentRoom = newRoom;
+        SwitchIsHidden();
+      }
+    }
+    public void SwitchIsHidden()
+    {
+      _game.CurrentRoom.SwitchIsHidden();
+      PrintCurrentRoomDes();
+    }
+
 
     // NOTE WIN/LOSE CONDITION
     public void Endgame()
