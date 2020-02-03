@@ -231,6 +231,8 @@ namespace ConsoleAdventure.Project
     }
     #endregion
 
+    // NOTE ITEM METHODS
+    #region
     public void UseItem(string itemName)
     {
       if (_game.CurrentRoom.UsableItems.Contains(itemName))
@@ -315,7 +317,10 @@ namespace ConsoleAdventure.Project
           break;
       }
     }
+    #endregion
 
+    // NOTE ROOM METHODS
+    #region
     public void UpdateDesc(string desc)
     {
       _game.CurrentRoom.ChangeDesc(desc);
@@ -329,7 +334,6 @@ namespace ConsoleAdventure.Project
     {
       _game.CurrentRoom.RevealHiddenItem(itemName);
     }
-
     public void ChangeRoomOnUnlock()
     {
       if (_game.CurrentRoom.Name == "House Interior")
@@ -344,9 +348,11 @@ namespace ConsoleAdventure.Project
       _game.CurrentRoom.SwitchIsHidden();
       PrintCurrentRoomDes();
     }
+    #endregion
 
 
     // NOTE WIN/LOSE CONDITION
+    #region
     public void Endgame()
     {
       int index = 0;
@@ -384,6 +390,7 @@ namespace ConsoleAdventure.Project
     {
       PrintGameOver();
     }
+    #endregion
 
     // NOTE Unused Actions
     // TODO Remove if never used + remove from IGameService
