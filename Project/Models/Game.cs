@@ -14,14 +14,13 @@ namespace ConsoleAdventure.Project.Models
       Player Player = new Player("Player");
       //NOTE ROOMS
       #region
-      // TODO Update descriptions
-      Room Woods = new Room("The forest path", "To the north lies an abandoned structure. The path south into the forest is pitch black. If you walk down it, you may never leave the forest.");
-      Room FrontPorch = new Room("Front porch", "The boards creak under your footsteps as you step onto the porch. To the north, the front door of the house lies open.");
-      Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single shuttered window, as well as a lantern sitting on the window sill.");
-      Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room. To the west of you lies a stairwell leading downwards, and to the north is another door.");
-      Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. There is a faded painting on the western wall, the only item not in decent condition.");
-      Room Basement = new Room("Basement", "With the stairs groaning under your weight with every footstep, you descend into the darkness. It is too dark to see anything.");
-      Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back. A porch leads up to the windowless house.");
+      Room Woods = new Room("The forest path", "To the north lies an abandoned structure. The path south into the forest is pitch black. If you walk down it, you may never leave the forest.", false);
+      Room FrontPorch = new Room("Front porch", "The boards creak under your footsteps as you step onto the porch. To the north, the front door of the house lies open. A scrap of paper is shoved between the boards.", false);
+      Room BackOfHouse = new Room("Back of the house", "As you come around to the back of the house, you notice a single shuttered window, as well as a lantern sitting on the window sill. Nothing hinders you from travel along either side of the decrepit building.", false);
+      Room LivingRoom = new Room("House Interior", "Inside of the house lies an empty room. To the west of you lies a stairwell leading downwards, and to the north is another door.", false);
+      Room Den = new Room("Den", "Inside the second room of the house is a surprisingly well-preserved den. Inside the den is a writing desk with a single wingback chair facing the northern wall, where a single window sits. There is a faded painting on the western wall, the only item not in decent condition.", false);
+      Room Basement = new Room("Basement", "With the stairs groaning under your weight with every footstep, you descend into the darkness. It is too dark to see anything.", false);
+      Room FrontYard = new Room("Front of the house", "An abandoned, single-story house lies before you, with the forest you stumbled out of at your back. A porch to the north leads up to the windowless house. Either side of the house looks to be accessible.", false);
 
       Woods.Exits.Add("north", FrontYard);
       FrontYard.Exits.Add("north", FrontPorch);
@@ -47,7 +46,7 @@ namespace ConsoleAdventure.Project.Models
       Item Compass = new Item("Compass", "A rusted, but usable, compass.", true);
       Item Lantern = new Item("Lantern", "Although the lantern appears the be very old, it seems to work properly once lit.", false);
       Item Map = new Item("Map", "While faded, the parchment appears to be a map of the woods. A dark red X on the map appears to mark the location of the house.", true);
-      Item Note = new Item("Note", "A scrap of paper holds a hastily-written inscription: 'I can't leave this forest, not until I can see where I'm going. But even if I could, I don't know where to go. If only I could find a map to find my way out, and a compass to get my bearings. Otherwise, I fear I may never leave here alive.", false);
+      Item Note = new Item("Paper", "A note that holds a hastily-written inscription: 'I can't leave this forest, not until I can see where I'm going.\nBut even if I could, I don't know where to go. If only I could find a map to find my way out, and a compass to get my bearings. Otherwise, I fear I may never leave this place alive.", false);
       // NOTE RED HERRINGS
 
       // NOTE INVENTORY ITEMS ADDED TO ROOMS

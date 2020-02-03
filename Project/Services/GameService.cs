@@ -20,7 +20,6 @@ namespace ConsoleAdventure.Project
     }
 
     // NOTE Utility Messages
-    // TODO move Messages to utils
     #region
     public void PrintTitle()
     {
@@ -267,6 +266,10 @@ namespace ConsoleAdventure.Project
             Messages.Add(new Message(""));
             UseInventoryItem(itemName);
             break;
+          case "paper":
+            Messages.Add(new Message("You unfold the note."));
+            Messages.Add(new Message(""));
+            break;
           default:
             PrintInvalidInput();
             break;
@@ -274,8 +277,6 @@ namespace ConsoleAdventure.Project
       }
     }
     #endregion
-
-    // NOTE 
 
     public void UseItem(string itemName)
     {
@@ -346,6 +347,9 @@ namespace ConsoleAdventure.Project
           break;
         case "lantern":
           UpdateDesc("As you come around to the back of the house, you notice a single shuttered window.");
+          break;
+        case "paper":
+          UpdateDesc("The boards creak under your footsteps as you step onto the porch. To the north, the front door of the house lies open.");
           break;
         default:
           break;
