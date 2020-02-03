@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ConsoleAdventure.Project.Interfaces;
 using ConsoleAdventure.Project.Models;
+using System;
 
 namespace ConsoleAdventure.Project
 {
@@ -35,15 +36,16 @@ namespace ConsoleAdventure.Project
                     ███  ███   ███          ███       ███    ███     ███    ███      ███ ▄█▄ ███ ███    ███ ███    ███ ███   ▄███    ▄█    ███ 
                     █▀    ▀█   █▀          ▄████▀     ███    █▀      ██████████       ▀███▀███▀   ▀██████▀   ▀██████▀  ████████▀   ▄████████▀  
                                                                                                                                                
-"
+", ConsoleColor.DarkGreen
       ));
     }
     public void PrintCredit()
     {
       Messages.Add(new Message(@"
-                                               _                       _        o                                  
-                                         _    (_| _ __  _    |_  \/   |_) _ __  |  _ __  o __    |\| _     o _|__|_
-                                        (_|   __|(_||||(/_   |_) /    |_)(/_| |_| (_|||| | | |   | |(/_\^/ |  |_ |_
+                                                  _                       _        o                                  
+                                            _    (_| _ __  _    |_  \/   |_) _ __  |  _ __  o __    |\| _     o _|__|_
+                                           (_|   __|(_||||(/_   |_) /    |_)(/_| |_| (_|||| | | |   | |(/_\^/ |  |_ |_
+
 "));
     }
 
@@ -60,7 +62,7 @@ namespace ConsoleAdventure.Project
                           \____/\___/\_| \_/\____/\_| \_\_| |_/\_/  \___/\_____/\_| |_/\_/  \___/ \___/\_| \_/\____/ 
                                                                                                                      
                                                                                                                      
-"));
+", ConsoleColor.Yellow));
     }
     public void PrintGameOver()
     {
@@ -79,7 +81,7 @@ namespace ConsoleAdventure.Project
                                           ::: ::::  ::   :::  :::     ::    :: ::::     ::::: ::    ::::     :: ::::  ::   :::  
                                           :: :: :    :   : :   :      :    : :: ::       : :  :      :      : :: ::    :   : :  
                                                                                                                                 
-"));
+", ConsoleColor.DarkRed));
     }
 
     // TODO Rewrite PrintIntroMessage
