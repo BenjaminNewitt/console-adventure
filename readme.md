@@ -6,8 +6,22 @@
 
 Go North. Look. "You are facing the north side of a white house. There is no door here, and all the windows are boarded up. To the north a narrow path winds through the trees." These were the opening descriptions to the Zork one of the early text based adventures written in 1979. In this checkpoint we will be recreating some of the excitement from those early text based adventures, while covering C# basics utilizing .NET Core's console applications.
 
-To start the game, download and extract the zip file, open up the folder and your CMD, and run the command `dotnet run`. 
 <hr>
+
+## Running The Game
+To start the game, download and extract the zip file, open up the folder and your CMD, and run the command `dotnet run`. 
+
+<hr>
+
+## Help
+You have various actions you can input to the console:
+  - `Go <Direction>` Moves the player in one of the four cardinal directions
+  - `Use <ItemName>` Uses the specified item in the room, whether already located in the room, or one from your inventory
+  - `Take <ItemName>` Places the item in your inventory
+  - `Look` Take a look around the current room
+  - `Inventory` Shows what items you're carrying
+  - `Help` Shows a list of commands and actions
+  - `Quit` Quits the Game
 
 ## Goals
 In this checkpoint students will demonstrate a functional understanding of the basic concepts of the dotnet console application, handling user input and creating a unique and fun story to go with it.
