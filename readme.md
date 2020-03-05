@@ -6,6 +6,7 @@
 
 Go North. Look. "You are facing the north side of a white house. There is no door here, and all the windows are boarded up. To the north a narrow path winds through the trees." These were the opening descriptions to the Zork one of the early text based adventures written in 1979. In this checkpoint we will be recreating some of the excitement from those early text based adventures, while covering C# basics utilizing .NET Core's console applications.
 
+# Running The Game
 To start the game, download and extract the zip file, open up the folder and your CMD, and run the command `dotnet run`. 
 <hr>
 
