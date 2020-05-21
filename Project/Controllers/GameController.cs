@@ -58,6 +58,7 @@ namespace ConsoleAdventure.Project.Controllers
         case "help":
           _gameService.Help();
           break;
+        // synonyms for "go"
         case "go":
         case "walk":
         case "run":
@@ -90,8 +91,10 @@ namespace ConsoleAdventure.Project.Controllers
     {
       foreach (Message message in _gameService.Messages)
       {
+        // prints each message added from _gameService to the screen
         message.Print();
       }
+      // clears out the messages after printing
       _gameService.Messages.Clear();
     }
 
