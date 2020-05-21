@@ -75,6 +75,7 @@ namespace ConsoleAdventure.Project
       bool IsEndOfGame = false;
       if (direction != "north" && direction != "south" && direction != "east" && direction != "west")
       {
+        // if not a direction
         PrintInvalidInput();
         return true;
       }
@@ -85,16 +86,19 @@ namespace ConsoleAdventure.Project
         {
           if (_game.CurrentRoom.Name == "The forest path" && direction == "south")
           {
+            // sets IsEndOfGame if trying to exit
             Endgame();
             IsEndOfGame = true;
           }
           else
           {
+            // if no room available, tells player they can't go that way
             Messages.Add(new Message("You can't travel in that direction"));
           }
         }
         else if (newRoom != null)
         {
+          // if the player is allowed to travel there
           if (newRoom.IsHidden == false)
           {
             _game.CurrentRoom = newRoom;
@@ -102,6 +106,7 @@ namespace ConsoleAdventure.Project
           }
           else
           {
+            // if they're not yet allowed
             Messages.Add(new Message("You can't go that way"));
           }
         }
