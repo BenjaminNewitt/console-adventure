@@ -9,13 +9,15 @@ namespace ConsoleAdventure.Project.Controllers
   {
     private GameService _gameService { get; set; } = new GameService();
 
+    // sets game loop
     private bool _playing = true;
 
 
     //NOTE Makes sure everything is called to finish Setup and Starts the Game loop
     public void Run()
     {
-      Console.SetWindowSize(170, 44);
+      // sets up game "intro"
+      // Console.SetWindowSize(170, 44);
       _gameService.PrintTitle();
       _gameService.PrintCredit();
       _gameService.PrintRuleOne();
