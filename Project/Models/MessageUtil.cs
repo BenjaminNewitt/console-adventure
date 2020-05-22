@@ -2,6 +2,7 @@ namespace ConsoleAdventure.Project.Models
 {
   static class MessageUtils
   {
+    // various blocks of text moved out of GameService for cleanliness
     public static string GameOver { get; set; } = @"
 
       
@@ -64,5 +65,16 @@ __,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,
                     █▀    ▀█   █▀          ▄████▀     ███    █▀      ██████████       ▀███▀███▀   ▀██████▀   ▀██████▀  ████████▀   ▄████████▀  
                                                                                                                                                
 ";
+
+    public static string Help { get; set; } = @"
+~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~{Actions}~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~^(|)^~~~~
+
+         go (direction) ~~~~~~~~~~~~~~~ input your cardinal direction to move about the environment
+         look           ~~~~~~~~~~~~~~~ check your surroundings
+         inventory      ~~~~~~~~~~~~~~~ view your inventory
+         take (item)    ~~~~~~~~~~~~~~~ attempt to move an item from the environment to add it to your inventory
+         use (item)     ~~~~~~~~~~~~~~~ attempt to use an item from your inventory with the environment
+         quit           ~~~~~~~~~~~~~~~ quit the game
+      ";
   }
 }

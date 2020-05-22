@@ -66,6 +66,11 @@ namespace ConsoleAdventure.Project
       Messages.Add(new Message(MessageUtils.RulerOne));
     }
 
+    public void PrintHelp()
+    {
+      Messages.Add(new Message(MessageUtils.Help));
+    }
+
     #endregion
 
     // NOTE Actions
