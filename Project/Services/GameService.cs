@@ -251,6 +251,7 @@ namespace ConsoleAdventure.Project
         // Use item that exists in the room
         switch (itemName)
         {
+          // checks if a specific item is used in specific situations
           case "painting":
             Messages.Add(new Message("Removing the painting from the wall reveals a very old map, one that looks like it could fall apart at any moment."));
             RevealHiddenItem("Map");
