@@ -277,6 +277,7 @@ namespace ConsoleAdventure.Project
 
     public void UseInventoryItem(string itemName)
     {
+      // check if item being used from the player's inventory can be used in the current room
       bool isItemUsable = _game.CurrentRoom.CheckItemUse(itemName);
       if (isItemUsable == true)
       {
