@@ -311,6 +311,7 @@ namespace ConsoleAdventure.Project
 
     public void OnTaken(string itemName)
     {
+      // if the item is taken, update the description of the room
       switch (itemName)
       {
         case "map":
